@@ -1,0 +1,22 @@
+---
+import BaseLink from "./BaseLink.astro";
+
+const framework = "astro";
+const author = "josepsoares";
+const frameworkWebsite = "https://astro.build/";
+const authorWebsite = "https://josepsoares.now.sh";
+const date = new Date().getFullYear();
+---
+
+<footer class="text-stone-500 flex justify-end text-[10px] w-full pt-10 pb-8">
+  <p class="m-0">
+    <BaseLink isExternalHref={true} href={authorWebsite} text={author}>
+      {author}
+    </BaseLink> -{" "}
+    criado com{" "}
+    <BaseLink isExternalHref={true} href={frameworkWebsite} text={framework}
+      >{framework}</BaseLink
+    > - {date}
+  </p>
+</footer>
+

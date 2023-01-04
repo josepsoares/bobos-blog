@@ -1,0 +1,52 @@
+---
+export interface Props {
+  title: string;
+  body: string;
+  href: string;
+}
+
+const { href, title, body } = Astro.props;
+---
+
+<li class="post-card">
+  <a href={href}>
+    <h2>
+      {title}
+      <span>&rarr;</span>
+    </h2>
+    <p>
+      {body}
+    </p>
+  </a>
+</li>
+
+<style>
+  .post-card {
+    color: ;
+    background-color: #fc9842;
+    background-image: linear-gradient(to left, 0%, 100%);
+    box-shadow: ;
+    transition: 0.5s all ease-in;
+    padding: 1rem;
+    position: relative;
+    top: 0px;
+  }
+
+  .post-card:hover,
+  .post-card:active {
+    top: -10px;
+  }
+
+  .post-card:focus {
+    box-shadow: rgba(225, 200, 66, 0.6) 0px 0px 0px 2px;
+  }
+
+  a {
+    color: ;
+  }
+
+  a:visited {
+    color: ;
+  }
+</style>
+

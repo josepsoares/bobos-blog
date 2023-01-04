@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostCard from "../../components/PostCard.astro";
+import Link from "../../components/Link.astro";
+
+const posts = await Astro.glob("./posts/*.md");
+posts.sort(
+  (a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date)
+);
+
+const filteredPosts = posts.filter((post) => !post.frontmatter.draft);
+filteredPosts.slice(0, 3);
+---
+
+<Layout title="posts">
+  <div>
+    <p class="relative mb-2 text-3xl tracking-wide">
+      aqui estão todos os posts, excelentíssimo navegador da web,
+      <span class="absolute bottom-1 ml-2 text-[10px]">
+        (mais sobre mim no meu <Link text="ver todos os posts" href="/posts">
+          primeiro post
+        </Link>)
+      </span>
+    </p>
+    <p class="my-4 text-xl tracking-wide">
+      <span class="text-gradient font-bold"
+        >vê se tem algo que te interesse e diverte-te</span
+      >.
+    </p>
+    <ul role="list" class="link-card-grid py-6">
+      {
+        filteredPosts.map((post) => (
+          <PostCard
+            href={post.url as string}
+            title={post.frontmatter.title}
+            date={post.frontmatter.date}
+            subjects={post.frontmatter.subjects}
+            illustration={post.frontmatter.illustration}
+          />
+        ))
+      }
+    </ul>
+  </div>
+</Layout>

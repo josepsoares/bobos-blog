@@ -1,0 +1,31 @@
+---
+import { Icon } from "astro-icon";
+
+export interface Props {
+  href: string;
+  isExternalHref?: boolean;
+  text: string;
+  icon?: string;
+}
+
+const { href, isExternalHref = "false", text, icon } = Astro.props;
+---
+
+<a
+  aria-label={text}
+  href={href}
+  target={isExternalHref ? "_blank" : null}
+  rel={isExternalHref ? "noopener noreferrer" : null}
+  class={icon
+    ? "flex flex-row items-center underline decoration-2 decoration-[#1d976c]"
+    : "underline decoration-2 decoration-[#1d976c]"}>
+  {icon && <Icon class="w-5 h-5 mr-2" name={icon} />}
+  <slot />
+</a>
+
+<style>
+  a:is(:hover, :focus-within) {
+    color: var(--accent);
+  }
+</style>
+

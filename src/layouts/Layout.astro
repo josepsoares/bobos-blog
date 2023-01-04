@@ -1,0 +1,64 @@
+---
+import { Icon } from "astro-icon";
+import Footer from "../components/Footer.astro";
+import ScrollToTopBtn from "../components/ScrollToTopBtn";
+
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html class="dark" lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} - bobo's blog</title>
+  </head>
+  <body class="bg-stone-900 font-body text-white">
+    <main
+      class="mx-auto grid min-h-screen w-11/12 md:w-10/12 xl:w-3/5"
+      style={{
+        gridTemplateRows: "1fr auto",
+      }}
+    >
+      <div class="mt-8">
+        <a href="/">
+          <img
+            class="mb-4 h-60 w-full object-cover"
+            src="/imgs/sample.jpg"
+            alt="sample"
+          />
+        </a>
+        <slot />
+      </div>
+      <Footer />
+      {
+        title !== "home" && (
+          <a href="/">
+            <button class="fixed bottom-20 left-40 border border-white p-2">
+              <Icon class="h-5 w-5" name="radix-icons:arrow-left" />
+            </button>
+          </a>
+        )
+      }
+    </main>
+    <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+
+      :root {
+        --accent: #1d976c;
+        --accent-gradient: linear-gradient(45deg, #1d976c, #93f9b9 50%);
+      }
+      html {
+        font-family: system-ui, sans-serif;
+      }
+    </style>
+  </body>
+</html>
