@@ -1,0 +1,46 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const blog = await getCollection("blog");
+  const posts = blog.filter((post) => !post.data.draft);
+
+  return posts.map((entry) => ({
+    params: {
+      slug: entry.slug,
+    },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"blog">;
+}
+
+console.log(Astro.props);
+
+// get all `src/content/blog/` entries
+// only return posts with `draft: false` in the frontmatter
+const getBlogPosts = await getCollection("blog", ({ data }) => {
+  return !data.draft;
+});
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+console.log(entry);
+---
+
+<Layout title={entry.data.title}>
+  <div>
+    <h1>{entry.data.title}</h1>
+    <h3>{entry.data.subjects.map((subject) => subject)}</h3>
+    <p>{entry.data.date}</p>
+
+    <div class="mt-6">
+      <Content />
+    </div>
+  </div>
+</Layout>
+
+<style></style>

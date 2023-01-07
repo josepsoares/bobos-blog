@@ -12,6 +12,7 @@ Yup, that's it. 👋
 
 - [git](https://git-scm.com)
 - [node.js v16^](https://nodejs.org/en/)
+- [yarn](https://yarnpkg.com/)
 
 ## author
 

@@ -9,5 +9,8 @@ import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [preact(), tailwind(), partytown()]
+  experimental: {
+    contentCollections: true,
+  },
+  integrations: [preact(), tailwind(), partytown()],
 });

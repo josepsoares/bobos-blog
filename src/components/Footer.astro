@@ -1,5 +1,5 @@
 ---
-import BaseLink from "./BaseLink.astro";
+import Link from "./Link.astro";
 
 const framework = "astro";
 const author = "josepsoares";
@@ -8,15 +8,14 @@ const authorWebsite = "https://josepsoares.now.sh";
 const date = new Date().getFullYear();
 ---
 
-<footer class="text-stone-500 flex justify-end text-[10px] w-full pt-10 pb-8">
+<footer class="flex w-full justify-end pt-10 pb-8 text-[10px] text-stone-500">
   <p class="m-0">
-    <BaseLink isExternalHref={true} href={authorWebsite} text={author}>
+    <Link isExternalHref={true} href={authorWebsite} text={author}>
       {author}
-    </BaseLink> -{" "}
+    </Link> -{" "}
     criado com{" "}
-    <BaseLink isExternalHref={true} href={frameworkWebsite} text={framework}
-      >{framework}</BaseLink
-    > - {date}
+    <Link isExternalHref={true} href={frameworkWebsite} text={framework}>
+      {framework}
+    </Link> - {date}
   </p>
 </footer>
-

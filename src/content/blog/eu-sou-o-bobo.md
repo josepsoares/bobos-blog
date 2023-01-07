@@ -2,11 +2,10 @@
 title: "eu sou o bobo"
 date: "08/01/2023"
 draft: false
+illustration: ""
+cardIllustration: ""
 subjects:
-  -
   - scss
 ---
 
-# title
-
-Um teste...
+eu sou o bobo

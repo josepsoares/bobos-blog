@@ -2,39 +2,48 @@
 export interface Props {
   title: string;
   date: string;
-  subjects: string;
+  subjects: string[];
   illustration: string;
   href: string;
 }
 
-const { href, title, date } = Astro.props;
+const { href, title, date, subjects, illustration } = Astro.props;
 ---
 
-<li class="link-card">
-  <a href={href}>
-    <h2>
-      {title}
-    </h2>
-    <p>
-      {date}
-    </p>
+<li
+  class="post-card group border-slate-300 p-2 hover:border-primary-600 md:px-4 lg:px-12"
+>
+  <a
+    class="flex w-full flex-col items-center justify-start md:flex-row md:justify-between"
+    href={href}
+  >
+    <div class="order-2 md:order-1">
+      <h2 class="z-10 group-hover:text-secondary">
+        {title}
+      </h2>
+      <p class="z-10 text-sm text-neutral-600 group-hover:text-primary-600">
+        {date} ~ {subjects.join(", ")}
+      </p>
+    </div>
+    <img
+      src="/imgs/test.png"
+      class="order-1 mb-2 h-16 w-16 md:order-2 md:mb-0 md:h-14 md:w-14"
+    />
   </a>
 </li>
+
 <style>
-  .link-card {
+  .post-card {
     list-style: none;
     display: flex;
-    padding: 0.15rem;
-    border-color: white;
     border-width: 1px;
-    background-size: 400%;
-    background-position: 100%;
-    transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 0.2s ease-in-out;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -2px rgba(0, 0, 0, 0.1);
   }
-
-  .link-card > a {
+  .post-card::before {
+  }
+  .post-card > a {
     width: 100%;
     text-decoration: none;
     line-height: 1.4;
@@ -44,18 +53,17 @@ const { href, title, date } = Astro.props;
   h2 {
     margin: 0;
     font-size: 1.25rem;
-    transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 0.2s ease-in-out;
   }
   p {
     margin-top: 0.5rem;
     margin-bottom: 0;
-    color: #444;
+    transition: all 0.2s ease-in-out;
   }
-  .link-card:is(:hover, :focus-within) {
+  .post-card:is(:hover, :focus-within) {
     background-position: 0;
   }
   .link-card:is(:hover, :focus-within) h2 {
     color: var(--accent);
   }
 </style>
-

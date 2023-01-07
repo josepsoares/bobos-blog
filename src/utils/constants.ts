@@ -1,4 +1,3 @@
-export const TWITTER_URL = "src/data/posts";
 export const BREAKPOINTS = {
   sm: 640,
   md: 768,
@@ -6,4 +5,3 @@ export const BREAKPOINTS = {
   xl: 1280,
   "2xl": 1536,
 };
-

@@ -1,16 +1,32 @@
 ---
-import { Icon } from "astro-icon";
 import Layout from "../layouts/Layout.astro";
 import PostCard from "../components/PostCard.astro";
 import Link from "../components/Link.astro";
 
-const posts = await Astro.glob("./blog/posts/*.md");
-posts.sort(
-  (a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date)
-);
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon";
 
-const filteredPosts = posts.filter((post) => !post.frontmatter.draft);
-filteredPosts.slice(0, 3);
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+// set customParseFormat plugin
+dayjs.extend(customParseFormat);
+
+// get all `src/content/blog/` entries
+// only return posts with `draft: false` in the frontmatter
+const getBlogPosts = await getCollection("blog", ({ data }) => {
+  return !data.draft;
+});
+
+// sort posts by their lastest date first
+// display only the first 3 posts
+const blogPosts = getBlogPosts
+  .sort((a, b) =>
+    dayjs(a.data.date, "DD/MM/YYYY").isBefore(dayjs(b.data.date, "DD/MM/YYYY"))
+      ? 1
+      : -1
+  )
+  .slice(0, 3);
 ---
 
 <Layout title="home">
@@ -18,19 +34,24 @@ filteredPosts.slice(0, 3);
     <p class="relative mb-2 text-3xl tracking-wide">
       hey, eu sou o <span class="text-gradient font-bold">bobo</span>
       <Icon class="inline w-6 h-6" name="ph:bird-fill" />,
-      <span class="absolute bottom-1 ml-2 text-[10px]">
+      <span class="absolute bottom-1 ml-2 hidden text-[10px] md:inline">
         (mais sobre mim no meu <Link text="ver todos os posts" href="/blog">
           primeiro post
         </Link>)
       </span>
     </p>
-    <p class="text-xl tracking-wide">
+    <span class="mb-1 block text-[10px] md:hidden">
+      (mais sobre mim no meu <Link text="ver todos os posts" href="/blog">
+        primeiro post
+      </Link>)
+    </span>
+    <p class="mb-1 text-xl tracking-wide md:mb-0">
       um pássaro imaginário criado por um cérebro de um ser vivo algures no
       planeta terra.
     </p>
-    <p class="text-xl tracking-wide">
+    <p class="mb-1 text-xl tracking-wide md:mb-0">
       gosto de escrever <span class="text-gradient font-bold"
-        >coisas irrelevantes</span
+        >coisas irrelevantes e à toa</span
       >
       que podes ler ao carregar nos botões abaixo.
     </p>
@@ -38,50 +59,30 @@ filteredPosts.slice(0, 3);
       <span class="text-gradient font-bold">lê lá e sê feliz, ou não</span>.
       <Icon class="inline w-5 h-5" name="ph:smiley-fill" />
     </p>
-    <ul role="list" class="link-card-grid py-6">
+    <ul role="list" class="grid grid-cols-1 gap-4 py-6">
       {
-        filteredPosts.map((post) => (
+        blogPosts.map((post) => (
           <PostCard
-            href={`blog/posts/${post.url}`}
-            title={post.frontmatter.title}
-            date={post.frontmatter.date}
-            subjects={post.frontmatter.subjects}
-            illustration={post.frontmatter.illustration}
+            href={`/blog/posts/${post.slug}`}
+            title={post.data.title}
+            date={post.data.date}
+            subjects={post.data.subjects}
+            illustration={post.data.illustration}
           />
         ))
       }
     </ul>
     <div class="flex justify-center">
       <p>
-        <Link text="ver todos os posts" href="/blog" icon="radix-icons:plus">
+        <Link
+          text="ver todos os posts"
+          href="/blog"
+          isExternalHref={false}
+          icon="radix-icons:plus"
+        >
           ver todos os posts
         </Link>
       </p>
     </div>
   </div>
 </Layout>
-
-<style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-</style>
