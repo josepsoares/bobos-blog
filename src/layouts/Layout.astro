@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon";
 import Footer from "../components/Footer.astro";
-import ScrollToTopBtn from "../components/ScrollToTopBtn";
+import ScrollToTopBtn from "../components/ScrollToTopBtn.svelte";
 
 export interface Props {
   title: string;
@@ -31,8 +31,9 @@ const { title, illustration } = Astro.props;
         {
           title !== "home" && (
             <a
-              class="hover:text-primary-600 active:text-primary-600 mb-4 flex flex-row items-center text-[10px] text-stone-500 underline 
-              decoration-stone-500 decoration-2 transition-colors"
+              id="go-back-to-homepage-button"
+              class="hover:text-primary-600 active:text-primary-600 mb-4 flex animate-[fade-in-down_1000ms_ease-in-out] flex-row items-center text-[10px] text-stone-500 underline decoration-stone-500 
+              decoration-2 transition-colors duration-200"
               href="/"
             >
               <Icon class="mr-1 h-2.5 w-2.5" name="ph:arrow-left-bold" />
@@ -40,17 +41,19 @@ const { title, illustration } = Astro.props;
             </a>
           )
         }
-        <a href="/">
+        <a id="img-banner" href="/" class="block animate-fade-in-down">
           <img
             class="mb-4 h-60 w-full object-cover"
             src={illustration || "/imgs/sample.jpg"}
             alt="sample"
           />
         </a>
-        <slot />
+        <div id="main-content" class="animate-fade-in-down">
+          <slot />
+        </div>
       </div>
       <Footer />
-      <!-- <ScrollToTopBtn client:only /> -->
+      <ScrollToTopBtn client:only />
     </main>
     <style is:global>
       @tailwind base;

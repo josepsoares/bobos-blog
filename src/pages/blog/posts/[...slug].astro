@@ -18,8 +18,6 @@ interface Props {
   entry: CollectionEntry<"blog">;
 }
 
-console.log(Astro.props);
-
 // get all `src/content/blog/` entries
 // only return posts with `draft: false` in the frontmatter
 const getBlogPosts = await getCollection("blog", ({ data }) => {
@@ -28,7 +26,6 @@ const getBlogPosts = await getCollection("blog", ({ data }) => {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-console.log(entry);
 ---
 
 <Layout title={entry.data.title}>
