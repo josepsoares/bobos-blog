@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon";
 import { CollectionEntry, getCollection } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
 
@@ -26,18 +27,153 @@ const getBlogPosts = await getCollection("blog", ({ data }) => {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+const nextPost =
+  getBlogPosts[getBlogPosts.findIndex((post) => post.id === entry.id) + 1];
+const previousPost =
+  getBlogPosts[getBlogPosts.findIndex((post) => post.id === entry.id) - 1];
 ---
 
 <Layout title={entry.data.title}>
   <div>
-    <h1>{entry.data.title}</h1>
-    <h3>{entry.data.subjects.map((subject) => subject)}</h3>
-    <p>{entry.data.date}</p>
+    <h1 class="text-gradient mb-4 break-words text-4xl font-bold md:text-6xl">
+      {entry.data.title}
+    </h1>
+    <h3 class="text-3xl">
+      {entry.data.date} ~ <span class="italic"
+        >{entry.data.subjects.join(", ")}</span
+      >
+    </h3>
 
-    <div class="mt-6">
+    <div id="postContent" class="my-6 space-y-2 text-lg text-stone-200">
       <Content />
     </div>
+
+    <div
+      class="mt-16 grid grid-cols-1 items-center gap-10 px-4 md:grid-cols-2 md:px-6"
+    >
+      <div>
+        <h4 class="text-gradient mb-1 text-4xl">é verdade...</h4>
+        <h5 class="text-xl">
+          se quiseres partilhar este post pelo mundo fora,
+        </h5>
+        <h5 class="text-xl">podes fazê-lo a partir das botões abaixo</h5>
+
+        <div class="mt-4 flex flex-row flex-wrap gap-4">
+          <a href="https://twitter.com/intent/tweet?url=asd&hastags=&text=">
+            <button
+              class="flex h-full flex-row items-center border-b border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-600"
+            >
+              <Icon class="inline w-4 h-4" name="simple-icons:twitter" />
+            </button>
+          </a>
+          <a
+            href="https://www.facebook.com/sharer/sharer.php?u=blog.shahednasser.com&quote=Awesome%20Blog!"
+          >
+            <button
+              class="flex h-full flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-600"
+            >
+              <Icon class="inline w-4 h-4" name="simple-icons:facebook" />
+            </button>
+          </a>
+          <a
+            href="https://wa.me/?text=Awesome%20Blog!%5Cn%20blog.shahednasser.com"
+          >
+            <button
+              class="flex h-full flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-600"
+            >
+              <Icon class="inline w-4 h-4" name="simple-icons:whatsapp" />
+            </button>
+          </a>
+          <a
+            href="https://t.me/share/url?url=blog.shahednasser.com&text=Awesome%20blog!"
+          >
+            <button
+              class="flex h-full flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-600"
+            >
+              <Icon class="inline w-4 h-4" name="simple-icons:telegram" />
+            </button>
+          </a>
+          <button
+            copy-post-link-button
+            class="flex flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-500"
+          >
+            <Icon class="inline w-4 h-4 mr-2" name="ph:link-bold" />
+            <span>copiar link</span>
+          </button>
+        </div>
+      </div>
+      <img
+        class="h-48 w-full object-cover md:mx-auto md:w-auto"
+        src="/imgs/sample.jpg"
+      />
+    </div>
+
+    <div class="mt-16 flex justify-center">
+      <a
+        class="mb-4 flex flex-row items-center text-[10px] text-stone-500 underline decoration-stone-500 decoration-2 transition-colors duration-200 hover:text-primary-600 active:text-primary-600"
+        href="/"
+      >
+        <Icon class="mr-1 h-2.5 w-2.5" name="ph:house-fill" />
+        voltar à página inicial
+      </a>
+    </div>
+
+    <div
+      class="mb-4 flex flex-col justify-start md:flex-row md:justify-between"
+    >
+      <div>
+        {
+          nextPost && (
+            <a
+              class="group flex flex-row items-center justify-start gap-4"
+              href={nextPost.slug}
+            >
+              <Icon
+                class="group-hover:text-primary-600 group-active:text-primary-600 h-7 w-7 transition-all duration-500 ease-in-out"
+                name="ph:arrow-left-bold"
+              />
+              <div>
+                <p class="text-md decoration-secondary group-hover:text-primary-600 group-active:text-primary-600 underline decoration-2 transition-all duration-500 ease-in-out md:text-lg">
+                  próximo post
+                </p>
+                <h5 class="text-sm text-stone-500">{nextPost.data.title}</h5>
+              </div>
+            </a>
+          )
+        }
+      </div>
+      <div>
+        {
+          previousPost && (
+            <a
+              class="group flex flex-row items-center justify-end gap-4"
+              href={previousPost.slug}
+            >
+              <div>
+                <p class="text-md decoration-secondary group-hover:text-primary-600 group-active:text-primary-600 underline decoration-2 transition-all duration-500 ease-in-out md:text-lg">
+                  post anterior
+                </p>
+                <h5 class="text-sm text-stone-500">
+                  {previousPost.data.title}
+                </h5>
+              </div>
+              <Icon
+                class="group-hover:text-primary-600 group-active:text-primary-600 h-7 w-7 transition-all duration-500 ease-in-out"
+                name="ph:arrow-right-bold"
+              />
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <div
+    toast-body
+    id="copy-post-link-toast"
+    class="fixed top-10 mx-auto hidden p-4"
+  >
+    <p toast-text></p>
   </div>
 </Layout>
-
-<style></style>
