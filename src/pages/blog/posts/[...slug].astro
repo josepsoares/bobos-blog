@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon";
 import { CollectionEntry, getCollection } from "astro:content";
+import SharePostSection from "../../../components/SharePostSection.svelte";
 import Layout from "../../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -27,6 +28,7 @@ const getBlogPosts = await getCollection("blog", ({ data }) => {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+const url = Astro.url;
 
 const nextPost =
   getBlogPosts[getBlogPosts.findIndex((post) => post.id === entry.id) + 1];
@@ -45,7 +47,7 @@ const previousPost =
       >
     </h3>
 
-    <div id="postContent" class="my-6 space-y-2 text-lg text-stone-200">
+    <div id="post-content" class="my-6 space-y-2 text-lg text-stone-200">
       <Content />
     </div>
 
@@ -59,49 +61,12 @@ const previousPost =
         </h5>
         <h5 class="text-xl">podes fazê-lo a partir das botões abaixo</h5>
 
-        <div class="mt-4 flex flex-row flex-wrap gap-4">
-          <a href="https://twitter.com/intent/tweet?url=asd&hastags=&text=">
-            <button
-              class="flex h-full flex-row items-center border-b border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-600"
-            >
-              <Icon class="inline w-4 h-4" name="simple-icons:twitter" />
-            </button>
-          </a>
-          <a
-            href="https://www.facebook.com/sharer/sharer.php?u=blog.shahednasser.com&quote=Awesome%20Blog!"
-          >
-            <button
-              class="flex h-full flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-600"
-            >
-              <Icon class="inline w-4 h-4" name="simple-icons:facebook" />
-            </button>
-          </a>
-          <a
-            href="https://wa.me/?text=Awesome%20Blog!%5Cn%20blog.shahednasser.com"
-          >
-            <button
-              class="flex h-full flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-600"
-            >
-              <Icon class="inline w-4 h-4" name="simple-icons:whatsapp" />
-            </button>
-          </a>
-          <a
-            href="https://t.me/share/url?url=blog.shahednasser.com&text=Awesome%20blog!"
-          >
-            <button
-              class="flex h-full flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-600"
-            >
-              <Icon class="inline w-4 h-4" name="simple-icons:telegram" />
-            </button>
-          </a>
-          <button
-            copy-post-link-button
-            class="flex flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-500"
-          >
-            <Icon class="inline w-4 h-4 mr-2" name="ph:link-bold" />
-            <span>copiar link</span>
-          </button>
-        </div>
+        <SharePostSection
+          client:only
+          url={url.href}
+          title={entry.data.title}
+          subjects={entry.data.subjects.join(", ")}
+        />
       </div>
       <img
         class="h-48 w-full object-cover md:mx-auto md:w-auto"
@@ -167,13 +132,5 @@ const previousPost =
         }
       </div>
     </div>
-  </div>
-
-  <div
-    toast-body
-    id="copy-post-link-toast"
-    class="fixed top-10 mx-auto hidden p-4"
-  >
-    <p toast-text></p>
   </div>
 </Layout>
