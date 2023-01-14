@@ -1,23 +1,19 @@
----
-import { Icon } from "astro-icon";
+<script lang="ts">
+  import InlineSVG from "svelte-inline-svg";
 
-export interface Props {
-  title: string;
-  date: string;
-  subjects: string[];
-  illustration: string;
-  href: string;
-}
-
-const { href, title, date, subjects, illustration } = Astro.props;
----
+  export let title: string;
+  export let date: string;
+  export let subjects: string[];
+  export let illustration: string;
+  export let href: string;
+</script>
 
 <li
   class="post-card group border-slate-300 p-2 transition-all duration-200 hover:border-primary-600 md:px-4 lg:px-12"
 >
   <a
     class="flex w-full flex-col items-center justify-start md:flex-row md:justify-between"
-    href={href}
+    {href}
   >
     <div class="order-2 md:order-1">
       <h2 class="z-10 group-hover:text-secondary">
@@ -27,8 +23,8 @@ const { href, title, date, subjects, illustration } = Astro.props;
         {date} ~ <span class="italic">{subjects.join(", ")}</span>
       </p>
     </div>
-    <Icon
-      name="dog-fill"
+    <InlineSVG
+      src={/* `/icons/${illustration}.svg` */ "/icons/dog-fill.svg"}
       class="transition-all duration-200 order-1 mb-2 h-16 w-16 md:order-2 md:mb-0 md:h-14 md:w-14 group-hover:text-secondary"
     />
   </a>
@@ -43,8 +39,7 @@ const { href, title, date, subjects, illustration } = Astro.props;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -2px rgba(0, 0, 0, 0.1);
   }
-  .post-card::before {
-  }
+
   .post-card > a {
     width: 100%;
     text-decoration: none;
@@ -64,8 +59,5 @@ const { href, title, date, subjects, illustration } = Astro.props;
   }
   .post-card:is(:hover, :focus-within) {
     background-position: 0;
-  }
-  .link-card:is(:hover, :focus-within) h2 {
-    color: var(--accent);
   }
 </style>

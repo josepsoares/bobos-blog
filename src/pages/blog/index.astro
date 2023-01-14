@@ -1,14 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import PostCard from "../../components/PostCard.astro";
 import Link from "../../components/Link.astro";
-import { chunkArray } from "../../utils/chunk";
 
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon";
 
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import PostsList from "../../components/PostsList.svelte";
 
 // set customParseFormat plugin
 dayjs.extend(customParseFormat);
@@ -21,15 +20,11 @@ const getBlogPosts = await getCollection("blog", ({ data }) => {
 
 // sort posts by their lastest date first
 // display only the first 3 posts
-const blogPosts = getBlogPosts
-  .sort((a, b) =>
-    dayjs(a.data.date, "DD/MM/YYYY").isBefore(dayjs(b.data.date, "DD/MM/YYYY"))
-      ? 1
-      : -1
-  )
-  .slice(0, 6);
-
-const test = chunkArray(getBlogPosts, 6);
+const blogPosts = getBlogPosts.sort((a, b) =>
+  dayjs(a.data.date, "DD/MM/YYYY").isBefore(dayjs(b.data.date, "DD/MM/YYYY"))
+    ? 1
+    : -1
+);
 ---
 
 <Layout title="posts" illustration="/imgs/sample2.png">
@@ -44,13 +39,19 @@ const test = chunkArray(getBlogPosts, 6);
       aqui estão todos os meus textos irrelevantes, <span
         class="absolute bottom-1 ml-2 hidden text-[10px] md:inline"
       >
-        (mais sobre mim no meu <Link text="ver todos os posts" href="/posts">
+        (mais sobre mim no meu <Link
+          text="ver todos os posts"
+          href="/blog/posts/eu-sou-o-bobo"
+        >
           primeiro post
         </Link>)
       </span>
     </p>
     <span class="mb-1 block text-[10px] md:hidden">
-      (mais sobre mim no meu <Link text="ver todos os posts" href="/blog">
+      (mais sobre mim no meu <Link
+        text="ver todos os posts"
+        href="/blog/posts/eu-sou-o-bobo"
+      >
         primeiro post
       </Link>)
     </span>
@@ -61,18 +62,6 @@ const test = chunkArray(getBlogPosts, 6);
       <span class="text-gradient font-bold">é tudo, fica bem</span>.
       <Icon class="inline w-5 h-5" name="ph:confetti-fill" />
     </p>
-    <ul role="list" class="grid grid-cols-1 gap-4 py-6">
-      {
-        blogPosts.map((post) => (
-          <PostCard
-            href={`/blog/posts/${post.slug}`}
-            title={post.data.title}
-            date={post.data.date}
-            subjects={post.data.subjects}
-            illustration={post.data.illustration}
-          />
-        ))
-      }
-    </ul>
+    <PostsList client:only allPosts={blogPosts} />
   </div>
 </Layout>

@@ -1,6 +1,8 @@
 ---
 import { Icon } from "astro-icon";
 import { CollectionEntry, getCollection } from "astro:content";
+import getReadingTime from "reading-time";
+
 import SharePostSection from "../../../components/SharePostSection.svelte";
 import Layout from "../../../layouts/Layout.astro";
 
@@ -29,6 +31,7 @@ const getBlogPosts = await getCollection("blog", ({ data }) => {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 const url = Astro.url;
+const readingTime = getReadingTime(entry.body);
 
 const nextPost =
   getBlogPosts[getBlogPosts.findIndex((post) => post.id === entry.id) + 1];
@@ -46,6 +49,11 @@ const previousPost =
         >{entry.data.subjects.join(", ")}</span
       >
     </h3>
+    <h4 class="mt-1 text-lg">
+      é provável que gastes à volta de <span class="text-gradient"
+        >{Math.round(readingTime.minutes)} minutos</span
+      > a ler este post
+    </h4>
 
     <div id="post-content" class="my-6 space-y-2 text-lg text-stone-200">
       <Content />

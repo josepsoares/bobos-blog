@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import PostCard from "../components/PostCard.astro";
 import Link from "../components/Link.astro";
+import PostCard from "../components/PostCard.svelte";
 
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon";
@@ -35,7 +35,10 @@ const blogPosts = getBlogPosts
       hey, eu sou o <span class="text-gradient font-bold">bobo</span>
       <Icon class="inline w-6 h-6" name="ph:bird-fill" />,
       <span class="absolute bottom-1 ml-2 hidden text-[10px] md:inline">
-        (mais sobre mim no meu <Link text="ver todos os posts" href="/blog">
+        (mais sobre mim no meu <Link
+          text="ver todos os posts"
+          href="/blog/posts/eu-sou-o-bobo"
+        >
           primeiro post
         </Link>)
       </span>
@@ -63,6 +66,7 @@ const blogPosts = getBlogPosts
       {
         blogPosts.map((post) => (
           <PostCard
+            client:only
             href={`/blog/posts/${post.slug}`}
             title={post.data.title}
             date={post.data.date}

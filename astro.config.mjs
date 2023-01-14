@@ -10,5 +10,8 @@ export default defineConfig({
   experimental: {
     contentCollections: true,
   },
+  markdown: {
+    extendDefaultPlugins: true,
+  },
   integrations: [tailwind(), partytown(), svelte()],
 });
