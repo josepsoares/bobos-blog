@@ -33,7 +33,7 @@ const blogPosts = getBlogPosts
   <div>
     <p class="relative mb-2 text-3xl tracking-wide">
       hey, eu sou o <span class="text-gradient font-bold">bobo</span>
-      <Icon class="inline w-6 h-6" name="ph:bird-fill" />,
+      <Icon class="inline w-6 h-6" name="bird" />,
       <span class="absolute bottom-1 ml-2 hidden text-[10px] md:inline">
         (mais sobre mim no meu <Link
           text="ver todos os posts"
@@ -60,18 +60,19 @@ const blogPosts = getBlogPosts
     </p>
     <p class="my-4 text-xl tracking-wide">
       <span class="text-gradient font-bold">lê lá e sê feliz, ou não</span>.
-      <Icon class="inline w-5 h-5" name="ph:smiley-fill" />
+      <Icon class="inline w-5 h-5" name="smiley" />
     </p>
     <ul role="list" class="grid grid-cols-1 gap-4 py-6">
       {
         blogPosts.map((post) => (
           <PostCard
             client:only
-            href={`/blog/posts/${post.slug}`}
+            slug={post.slug}
             title={post.data.title}
+            href={`/blog/posts/${post.slug}`}
             date={post.data.date}
             subjects={post.data.subjects}
-            illustration={post.data.illustration}
+            img={post.data.cardImg}
           />
         ))
       }
@@ -82,7 +83,7 @@ const blogPosts = getBlogPosts
           text="ver todos os posts"
           href="/blog"
           isExternalHref={false}
-          icon="radix-icons:plus"
+          icon="plus"
         >
           ver todos os posts
         </Link>

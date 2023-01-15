@@ -1,4 +1,6 @@
 <script lang="ts">
+  import ArrowUp from "../icons/arrow-up.svg?component";
+
   export let buttonVisibleOnPX = 200;
   let hidden = true;
 

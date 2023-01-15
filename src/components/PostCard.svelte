@@ -1,10 +1,9 @@
 <script lang="ts">
-  import InlineSVG from "svelte-inline-svg";
-
+  export let slug: string;
   export let title: string;
   export let date: string;
   export let subjects: string[];
-  export let illustration: string;
+  export let img: boolean | undefined;
   export let href: string;
 </script>
 
@@ -23,10 +22,22 @@
         {date} ~ <span class="italic">{subjects.join(", ")}</span>
       </p>
     </div>
-    <InlineSVG
-      src={/* `/icons/${illustration}.svg` */ "/icons/dog-fill.svg"}
-      class="transition-all duration-200 order-1 mb-2 h-16 w-16 md:order-2 md:mb-0 md:h-14 md:w-14 group-hover:text-secondary"
-    />
+    <div
+      class="relative order-1 mb-2 h-16 w-16  md:order-2 md:mb-0 md:h-14 md:w-14"
+    >
+      <img
+        src={img ? `/imgs/blog/${slug}-card.png` : `/imgs/blog/dog-sample.png`}
+        alt=""
+        class="transition-all duration-200 w-full h-full opacity-100 group-hover:opacity-0"
+      />
+      <img
+        src={img
+          ? `/imgs/blog/${slug}-card-hover.png`
+          : "/imgs/blog/tiger-sample.png"}
+        alt=""
+        class="absolute top-0 bottom-0 transition-all duration-200 w-full h-full opacity-0 group-hover:opacity-100"
+      />
+    </div>
   </a>
 </li>
 
@@ -56,8 +67,5 @@
     margin-top: 0.5rem;
     margin-bottom: 0;
     transition: all 0.2s ease-in-out;
-  }
-  .post-card:is(:hover, :focus-within) {
-    background-position: 0;
   }
 </style>

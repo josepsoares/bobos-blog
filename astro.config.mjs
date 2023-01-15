@@ -4,6 +4,7 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
 import svelte from "@astrojs/svelte";
+import svgr from "vite-plugin-svelte-svgr";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,4 +15,7 @@ export default defineConfig({
     extendDefaultPlugins: true,
   },
   integrations: [tailwind(), partytown(), svelte()],
+  vite: {
+    plugins: [svgr()],
+  },
 });

@@ -14,8 +14,6 @@ yup, that's it. 👋
 - [node.js v16^](https://nodejs.org/en/)
 - [yarn](https://yarnpkg.com/)
 
-## dev
-
 ## deploy
 
 ## author

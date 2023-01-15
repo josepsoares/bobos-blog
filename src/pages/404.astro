@@ -4,13 +4,13 @@ import Link from "../components/Link.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="404">
+<Layout title="404" banner="/imgs/sample-404.png" bannerH="h-[600px]">
   <div>
     <h1 class="relative mb-2 text-3xl tracking-wide">
       hey, parece que estás num <span class="text-gradient font-bold"
         >sítio que não existe...</span
       >
-      <Icon class="inline w-6 h-6" name="ph:smiley-x-eyes-fill" />,
+      <Icon class="inline w-6 h-6" name="smiley-x-eyes" />,
     </h1>
     <h3 class="text-xl tracking-wide">
       bem, <span class="text-gradient font-bold">nada temas</span>, eu criei
@@ -19,8 +19,10 @@ import Layout from "../layouts/Layout.astro";
     </h3>
     <h3 class="mb-6 text-xl">
       sim, eu sou atencioso, <span class="text-gradient font-bold">eu sei</span
-      >. <Icon class="inline w-5 h-5" name="ph:smiley-fill" />
+      >. <Icon class="inline w-5 h-5" name="smiley" />
     </h3>
-    <Link text="voltar à página inicial" href="/">voltar à página inicial</Link>
+    <Link icon="arrow-left" text="voltar à página inicial" href="/">
+      voltar à página inicial
+    </Link>
   </div>
 </Layout>

@@ -39,7 +39,10 @@ const previousPost =
   getBlogPosts[getBlogPosts.findIndex((post) => post.id === entry.id) - 1];
 ---
 
-<Layout title={entry.data.title}>
+<Layout
+  title={entry.data.title}
+  banner={`/imgs/blog/${entry.data.cardImg ? entry.slug : "blog-sample"}.png`}
+>
   <div>
     <h1 class="text-gradient mb-4 break-words text-4xl font-bold md:text-6xl">
       {entry.data.title}
@@ -50,9 +53,9 @@ const previousPost =
       >
     </h3>
     <h4 class="mt-1 text-lg">
-      é provável que gastes à volta de <span class="text-gradient"
-        >{Math.round(readingTime.minutes)} minutos</span
-      > a ler este post
+      é provável que este <span class="text-gradient"
+        >post consuma {Math.round(readingTime.minutes)} minutos</span
+      > para ser lido
     </h4>
 
     <div id="post-content" class="my-6 space-y-2 text-lg text-stone-200">
@@ -78,7 +81,8 @@ const previousPost =
       </div>
       <img
         class="h-48 w-full object-cover md:mx-auto md:w-auto"
-        src="/imgs/sample.jpg"
+        src="/imgs/sample-thanks.png"
+        alt="imagem do banner"
       />
     </div>
 
@@ -87,7 +91,7 @@ const previousPost =
         class="mb-4 flex flex-row items-center text-[10px] text-stone-500 underline decoration-stone-500 decoration-2 transition-colors duration-200 hover:text-primary-600 active:text-primary-600"
         href="/"
       >
-        <Icon class="mr-1 h-2.5 w-2.5" name="ph:house-fill" />
+        <Icon class="mr-1 h-2.5 w-2.5" name="house" />
         voltar à página inicial
       </a>
     </div>
@@ -104,7 +108,7 @@ const previousPost =
             >
               <Icon
                 class="group-hover:text-primary-600 group-active:text-primary-600 h-7 w-7 transition-all duration-500 ease-in-out"
-                name="ph:arrow-left-bold"
+                name="arrow-left"
               />
               <div>
                 <p class="text-md decoration-secondary group-hover:text-primary-600 group-active:text-primary-600 underline decoration-2 transition-all duration-500 ease-in-out md:text-lg">
@@ -133,7 +137,7 @@ const previousPost =
               </div>
               <Icon
                 class="group-hover:text-primary-600 group-active:text-primary-600 h-7 w-7 transition-all duration-500 ease-in-out"
-                name="ph:arrow-right-bold"
+                name="arrow-right"
               />
             </a>
           )

@@ -1,9 +1,12 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import toast, { Toaster } from "svelte-french-toast";
-  import InlineSVG from "svelte-inline-svg";
   import { isMobileDevice } from "../utils/device";
-  import { BOBOSBLOG_URL } from "../utils/constants";
+
+  import ShareIcon from "../icons/share-network.svg?component";
+  import LinkIcon from "../icons/link.svg?component";
+  import TwitterIcon from "../icons/twitter.svg?component";
+  import WhatsAppIcon from "../icons/whatsapp.svg?component";
+  import TelegramIcon from "../icons/telegram.svg?component";
 
   export let title: string;
   export let subjects: string;
@@ -14,32 +17,14 @@
   const encodedTitle = encodeURIComponent(title);
   const encodedMessage = encodeURIComponent(message);
   const encodedHastags = encodeURIComponent(subjects);
-  const ssr = import.meta.env.SSR;
+  const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodedMessage}&url=${encodedUrl}&hashtags=${encodedHastags}`;
+  const whatsappShareUrl = isMobileDevice()
+    ? `https://api.whatsapp.com/send?url=${encodedUrl}&title=${encodedTitle}`
+    : `https://wa.me/?text=${encodeURIComponent(`${message} - ${url}`)}`;
+  const telegramShareUrl = `https://telegram.me/share/url?url=${encodedUrl}&title=${encodedTitle}`;
 
-  const socialMedias = [
-    // text, url, hashtags, via, related
-    {
-      name: "twitter",
-      url: `https://twitter.com/intent/tweet?text=${encodedMessage}&url=${encodedUrl}&hashtags=${encodedHastags}`,
-    },
-    // url, title
-    {
-      name: "telegram",
-      url: `https://telegram.me/share/url?url=${encodedUrl}&title=${encodedTitle}`,
-    },
-    // url, title
-    {
-      name: "whatsapp",
-      url: isMobileDevice()
-        ? `https://api.whatsapp.com/send?url=${encodedUrl}&title=${encodedTitle}`
-        : `https://wa.me/?text=${encodeURIComponent(`${message} - ${url}`)}`,
-    },
-  ];
-
-  $: webShareAPISupported = !ssr && typeof navigator.share !== "undefined";
+  $: webShareAPISupported = typeof navigator.share !== "undefined";
   $: handleWebShare;
-
-  onMount(() => (url = window.location.href));
 
   /**
    * open social window to share post
@@ -65,7 +50,7 @@
         navigator.share({
           title,
           text: `Shared from asd`,
-          url: BOBOSBLOG_URL,
+          url: url,
         });
       } else {
         webShareAPISupported = false;
@@ -95,27 +80,34 @@
       on:click={handleWebShare}
       class="flex flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-500"
     >
-      <InlineSVG
-        class="inline w-4 h-4 mr-2"
-        src="/icons/share-network-bold.svg"
-      />
+      <ShareIcon class="inline w-4 h-4 mr-2" />
       <span>partilhar</span>
     </button>
   {:else}
-    {#each socialMedias as socialMedia}
-      <button
-        on:click={(e) => openSocialMediaWindow(e, socialMedia.url)}
-        class="flex flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-500"
-      >
-        <InlineSVG class="" src={`/icons/${socialMedia.name}.svg`} />
-      </button>
-    {/each}
+    <button
+      on:click={(e) => openSocialMediaWindow(e, twitterShareUrl)}
+      class="flex flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-500"
+    >
+      <TwitterIcon />
+    </button>
+    <button
+      on:click={(e) => openSocialMediaWindow(e, whatsappShareUrl)}
+      class="flex flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-500"
+    >
+      <WhatsAppIcon />
+    </button>
+    <button
+      on:click={(e) => openSocialMediaWindow(e, telegramShareUrl)}
+      class="flex flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-500"
+    >
+      <TelegramIcon />
+    </button>
   {/if}
   <button
     on:click={handleCopyPostLinkBtnClick}
     class="flex flex-row items-center border-b-2 border-secondary p-2 px-4 transition-all duration-500 ease-in-out hover:text-primary-600 active:text-primary-500"
   >
-    <InlineSVG class="inline w-4 h-4 mr-2" src="/icons/link-bold.svg" />
+    <LinkIcon class="inline w-4 h-4 mr-2" />
     <span>copiar link</span>
   </button>
 </aside>

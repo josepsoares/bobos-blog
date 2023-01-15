@@ -1,14 +1,16 @@
 ---
 import { Icon } from "astro-icon";
+
 import Footer from "../components/Footer.astro";
 import ScrollToTopBtn from "../components/ScrollToTopBtn.svelte";
 
 export interface Props {
   title: string;
-  illustration?: string;
+  banner?: string;
+  bannerH?: string;
 }
 
-const { title, illustration } = Astro.props;
+const { title, banner, bannerH = "h-72" } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -16,7 +18,7 @@ const { title, illustration } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} - bobo's blog</title>
   </head>
@@ -38,16 +40,16 @@ const { title, illustration } = Astro.props;
               decoration-2 transition-colors duration-200"
               href="/"
             >
-              <Icon class="mr-1 h-2.5 w-2.5" name="ph:arrow-left-bold" />
+              <Icon class="mr-1 h-2.5 w-2.5" name="arrow-left" />
               voltar à página inicial
             </a>
           )
         }
         <a id="img-banner" href="/" class="block animate-fade-in-down">
           <img
-            class="mb-4 h-60 w-full object-cover"
-            src={illustration || "/imgs/sample.jpg"}
-            alt="sample"
+            class={`mb-4 ${bannerH} w-full object-cover`}
+            src={banner || "/imgs/sample-eva.jpg"}
+            alt="imagem do banner"
           />
         </a>
         <div id="main-content" class="animate-fade-in-down">

@@ -27,13 +27,13 @@ const blogPosts = getBlogPosts.sort((a, b) =>
 );
 ---
 
-<Layout title="posts" illustration="/imgs/sample2.png">
+<Layout title="posts" banner="/imgs/sample-go.jpg">
   <div>
     <p class="relative mb-2 text-3xl tracking-wide">
       oi, <span class="text-gradient font-bold"
         >excelentíssimo navegador da web</span
       >
-      <Icon class="inline w-6 h-6" name="ph:hand-waving-fill" />,
+      <Icon class="inline w-6 h-6" name="hand-waving" />,
     </p>
     <p class="relative mb-1 text-xl tracking-wide md:mb-0">
       aqui estão todos os meus textos irrelevantes, <span
@@ -60,7 +60,7 @@ const blogPosts = getBlogPosts.sort((a, b) =>
     </p>
     <p class="my-4 text-xl tracking-wide">
       <span class="text-gradient font-bold">é tudo, fica bem</span>.
-      <Icon class="inline w-5 h-5" name="ph:confetti-fill" />
+      <Icon class="inline w-5 h-5" name="confetti" />
     </p>
     <PostsList client:only allPosts={blogPosts} />
   </div>

@@ -13,8 +13,8 @@
       title: string;
       date: string;
       draft: boolean;
-      illustration: string;
-      cardIllustration: string;
+      bannerImg?: boolean | undefined;
+      cardImg?: boolean | undefined;
       subjects: string[];
     };
   }[];
@@ -48,9 +48,10 @@
 >
   {#each posts as post}
     <PostCard
+      slug={post.slug}
       date={post.data.date}
       href={`/blog/posts/${post.slug}`}
-      illustration={post.data.cardIllustration}
+      img={post.data.cardImg}
       subjects={post.data.subjects}
       title={post.data.title}
     />
