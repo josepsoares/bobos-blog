@@ -21,6 +21,18 @@ const { title, banner, bannerH = "h-72" } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} - bobo's blog</title>
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+    ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "GA_MEASUREMENT_ID");
+    </script>
   </head>
   <body
     class="my-8 w-[100vw] overflow-x-hidden bg-stone-900 font-body text-white"

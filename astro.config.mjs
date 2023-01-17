@@ -14,7 +14,15 @@ export default defineConfig({
   markdown: {
     extendDefaultPlugins: true,
   },
-  integrations: [tailwind(), partytown(), svelte()],
+  integrations: [
+    tailwind(),
+    svelte(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+  ],
   vite: {
     plugins: [svgr()],
   },
