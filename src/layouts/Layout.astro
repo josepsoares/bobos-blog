@@ -95,7 +95,7 @@ const { title, banner, bannerH = "h-72" } = Astro.props;
         </div>
       </div>
       <Footer />
-      <ScrollToTopBtn client:only />
+      <ScrollToTopBtn client:load />
     </main>
     <style is:global>
       @tailwind base;

@@ -66,7 +66,7 @@ const blogPosts = getBlogPosts
       {
         blogPosts.map((post) => (
           <PostCard
-            client:only
+            client:load
             slug={post.slug}
             title={post.data.title}
             href={`/blog/posts/${post.slug}`}

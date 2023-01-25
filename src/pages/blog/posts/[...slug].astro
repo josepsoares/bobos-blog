@@ -73,7 +73,7 @@ const previousPost =
         <h5 class="text-xl">podes fazê-lo a partir das botões abaixo</h5>
 
         <SharePostSection
-          client:only
+          client:load
           url={url.href}
           title={entry.data.title}
           subjects={entry.data.subjects.join(", ")}

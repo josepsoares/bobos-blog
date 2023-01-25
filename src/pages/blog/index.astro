@@ -62,6 +62,6 @@ const blogPosts = getBlogPosts.sort((a, b) =>
       <span class="text-gradient font-bold">é tudo, fica bem</span>.
       <Icon class="inline w-5 h-5" name="confetti" />
     </p>
-    <PostsList client:only allPosts={blogPosts} />
+    <PostsList client:load allPosts={blogPosts} />
   </div>
 </Layout>
