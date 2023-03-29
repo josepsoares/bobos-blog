@@ -30,6 +30,7 @@ const getBlogPosts = await getCollection("blog", ({ data }) => {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
 const url = Astro.url;
 const readingTime = getReadingTime(entry.body);
 
@@ -73,7 +74,7 @@ const previousPost =
         <h5 class="text-xl">podes fazê-lo a partir das botões abaixo</h5>
 
         <SharePostSection
-          client:load
+          client:only
           url={url.href}
           title={entry.data.title}
           subjects={entry.data.subjects.join(", ")}
