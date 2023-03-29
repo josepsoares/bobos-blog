@@ -1,0 +1,114 @@
+---
+import { Icon } from "astro-icon";
+
+import Footer from "../components/Footer.astro";
+import ScrollToTopBtn from "../components/ScrollToTopBtn.svelte";
+
+export interface Props {
+  title: string;
+  banner?: string;
+  bannerH?: string;
+}
+
+const { title, banner, bannerH = "h-72" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html class="dark" lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} - bobo's blog</title>
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicons/favicon-16x16.png"
+    />
+    <link
+      rel="mask-icon"
+      href="/favicons/safari-pinned-tab.svg"
+      color="#1d976c"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#1d976c" />
+    <meta name="theme-color" content="#1d976c" />
+
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+    ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "GA_MEASUREMENT_ID");
+    </script>
+  </head>
+  <body
+    class="my-8 w-[100vw] overflow-x-hidden bg-stone-900 font-body text-white"
+  >
+    <main
+      class="mx-auto grid min-h-screen w-11/12 md:w-10/12 xl:w-3/5"
+      style={{
+        gridTemplateRows: "1fr auto",
+      }}
+    >
+      <div>
+        {
+          title !== "home" && (
+            <a
+              id="go-back-to-homepage-button"
+              class="hover:text-primary-600 active:text-primary-600 mb-4 flex animate-[fade-in-down_1000ms_ease-in-out] flex-row items-center text-[10px] text-stone-500 underline decoration-stone-500 
+              decoration-2 transition-colors duration-200"
+              href="/"
+            >
+              <Icon class="mr-1 h-2.5 w-2.5" name="arrow-left" />
+              voltar à página inicial
+            </a>
+          )
+        }
+        <a id="img-banner" href="/" class="block animate-fade-in-down">
+          <img
+            class={`mb-4 ${bannerH} w-full object-cover`}
+            src={banner || "/imgs/sample-eva.jpg"}
+            alt="imagem do banner"
+          />
+        </a>
+        <div id="main-content" class="animate-fade-in-down">
+          <slot />
+        </div>
+      </div>
+      <Footer />
+      <ScrollToTopBtn client:load />
+    </main>
+    <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+
+      .text-gradient {
+        background-image: linear-gradient(45deg, #1d976c, #93f9b9 50%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+      }
+    </style>
+  </body>
+</html>

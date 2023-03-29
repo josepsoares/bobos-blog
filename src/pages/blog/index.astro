@@ -1,0 +1,67 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Link from "../../components/Link.astro";
+
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon";
+
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import PostsList from "../../components/PostsList.svelte";
+
+// set customParseFormat plugin
+dayjs.extend(customParseFormat);
+
+// get all `src/content/blog/` entries
+// only return posts with `draft: false` in the frontmatter
+const getBlogPosts = await getCollection("blog", ({ data }) => {
+  return !data.draft;
+});
+
+// sort posts by their lastest date first
+// display only the first 3 posts
+const blogPosts = getBlogPosts.sort((a, b) =>
+  dayjs(a.data.date, "DD/MM/YYYY").isBefore(dayjs(b.data.date, "DD/MM/YYYY"))
+    ? 1
+    : -1
+);
+---
+
+<Layout title="posts" banner="/imgs/sample-go.jpg">
+  <div>
+    <p class="relative mb-2 text-3xl tracking-wide">
+      oi, <span class="text-gradient font-bold"
+        >excelentíssimo navegador da web</span
+      >
+      <Icon class="inline w-6 h-6" name="hand-waving" />,
+    </p>
+    <p class="relative mb-1 text-xl tracking-wide md:mb-0">
+      aqui estão todos os meus textos irrelevantes, <span
+        class="absolute bottom-1 ml-2 hidden text-[10px] md:inline"
+      >
+        (mais sobre mim no meu <Link
+          text="ver todos os posts"
+          href="/blog/posts/eu-sou-o-bobo"
+        >
+          primeiro post
+        </Link>)
+      </span>
+    </p>
+    <span class="mb-1 block text-[10px] md:hidden">
+      (mais sobre mim no meu <Link
+        text="ver todos os posts"
+        href="/blog/posts/eu-sou-o-bobo"
+      >
+        primeiro post
+      </Link>)
+    </span>
+    <p class="mb-2 text-xl tracking-wide">
+      vê se tem algo que te interesse e diverte-te.
+    </p>
+    <p class="my-4 text-xl tracking-wide">
+      <span class="text-gradient font-bold">é tudo, fica bem</span>.
+      <Icon class="inline w-5 h-5" name="confetti" />
+    </p>
+    <PostsList client:load allPosts={blogPosts} />
+  </div>
+</Layout>

@@ -1,0 +1,149 @@
+---
+import { Icon } from "astro-icon";
+import { CollectionEntry, getCollection } from "astro:content";
+import getReadingTime from "reading-time";
+
+import SharePostSection from "../../../components/SharePostSection.svelte";
+import Layout from "../../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const blog = await getCollection("blog");
+  const posts = blog.filter((post) => !post.data.draft);
+
+  return posts.map((entry) => ({
+    params: {
+      slug: entry.slug,
+    },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"blog">;
+}
+
+// get all `src/content/blog/` entries
+// only return posts with `draft: false` in the frontmatter
+const getBlogPosts = await getCollection("blog", ({ data }) => {
+  return !data.draft;
+});
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const url = Astro.url;
+const readingTime = getReadingTime(entry.body);
+
+const nextPost =
+  getBlogPosts[getBlogPosts.findIndex((post) => post.id === entry.id) + 1];
+const previousPost =
+  getBlogPosts[getBlogPosts.findIndex((post) => post.id === entry.id) - 1];
+---
+
+<Layout
+  title={entry.data.title}
+  banner={`/imgs/blog/${entry.data.cardImg ? entry.slug : "blog-sample"}.png`}
+>
+  <div>
+    <h1 class="text-gradient mb-4 break-words text-4xl font-bold md:text-6xl">
+      {entry.data.title}
+    </h1>
+    <h3 class="text-3xl">
+      {entry.data.date} ~ <span class="italic"
+        >{entry.data.subjects.join(", ")}</span
+      >
+    </h3>
+    <h4 class="mt-1 text-lg">
+      é provável que este <span class="text-gradient"
+        >post consuma {Math.round(readingTime.minutes)} minutos</span
+      > para ser lido
+    </h4>
+
+    <div id="post-content" class="my-6 space-y-2 text-lg text-stone-200">
+      <Content />
+    </div>
+
+    <div
+      class="mt-16 grid grid-cols-1 items-center gap-10 px-4 md:grid-cols-2 md:px-6"
+    >
+      <div>
+        <h4 class="text-gradient mb-1 text-4xl">é verdade...</h4>
+        <h5 class="text-xl">
+          se quiseres partilhar este post pelo mundo fora,
+        </h5>
+        <h5 class="text-xl">podes fazê-lo a partir das botões abaixo</h5>
+
+        <SharePostSection
+          client:only
+          url={url.href}
+          title={entry.data.title}
+          subjects={entry.data.subjects.join(", ")}
+        />
+      </div>
+      <img
+        class="h-48 w-full object-cover md:mx-auto md:w-auto"
+        src="/imgs/sample-thanks.png"
+        alt="imagem do banner"
+      />
+    </div>
+
+    <div class="mt-16 flex justify-center">
+      <a
+        class="mb-4 flex flex-row items-center text-[10px] text-stone-500 underline decoration-stone-500 decoration-2 transition-colors duration-200 hover:text-primary-600 active:text-primary-600"
+        href="/"
+      >
+        <Icon class="mr-1 h-2.5 w-2.5" name="house" />
+        voltar à página inicial
+      </a>
+    </div>
+
+    <div
+      class="mb-4 flex flex-col justify-start md:flex-row md:justify-between"
+    >
+      <div>
+        {
+          nextPost && (
+            <a
+              class="group flex flex-row items-center justify-start gap-4"
+              href={nextPost.slug}
+            >
+              <Icon
+                class="group-hover:text-primary-600 group-active:text-primary-600 h-7 w-7 transition-all duration-500 ease-in-out"
+                name="arrow-left"
+              />
+              <div>
+                <p class="text-md decoration-secondary group-hover:text-primary-600 group-active:text-primary-600 underline decoration-2 transition-all duration-500 ease-in-out md:text-lg">
+                  próximo post
+                </p>
+                <h5 class="text-sm text-stone-500">{nextPost.data.title}</h5>
+              </div>
+            </a>
+          )
+        }
+      </div>
+      <div>
+        {
+          previousPost && (
+            <a
+              class="group flex flex-row items-center justify-end gap-4"
+              href={previousPost.slug}
+            >
+              <div>
+                <p class="text-md decoration-secondary group-hover:text-primary-600 group-active:text-primary-600 underline decoration-2 transition-all duration-500 ease-in-out md:text-lg">
+                  post anterior
+                </p>
+                <h5 class="text-sm text-stone-500">
+                  {previousPost.data.title}
+                </h5>
+              </div>
+              <Icon
+                class="group-hover:text-primary-600 group-active:text-primary-600 h-7 w-7 transition-all duration-500 ease-in-out"
+                name="arrow-right"
+              />
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Layout>
