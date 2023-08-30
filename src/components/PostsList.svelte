@@ -1,8 +1,6 @@
 <script lang="ts">
-  import type { Action } from "svelte/action";
   import { onMount } from "svelte";
   import { scale } from "svelte/transition";
-  import autoAnimate from "@formkit/auto-animate";
   import dayjs from "dayjs";
   import customParseFormat from "dayjs/plugin/customParseFormat";
 
@@ -39,7 +37,6 @@
   let posts = allPosts.slice(0, postsPerPage);
 
   // https://github.com/formkit/auto-animate/issues/82
-  const typedAutoAnimate = autoAnimate as Action;
 
   function scrollHandler() {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
@@ -169,7 +166,7 @@
   </div>
 </div>
 <ul
-  use:typedAutoAnimate={{ duration: 500 }}
+ 
   class="grid grid-cols-1 gap-4 py-6"
 >
   {#each posts as post}

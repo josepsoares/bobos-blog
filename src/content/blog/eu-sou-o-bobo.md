@@ -1,11 +1,40 @@
 ---
 title: "eu sou o bobo"
-date: "08/01/2023"
+date: "01/05/2023"
 draft: false
 bannerImg: false
 cardImg: false
 subjects:
-  - scss
+  - introdução
 ---
 
-eu sou o bobo
+Caros leitores, vocês não me conhecem, não sabem como eu me pareço, como eu me comporto ou em qual dimensão em que eu resido. Logo, o propósito deste post é fazer-vos perceber quem eu sou, o porquê de estar a escrever neste lugar da internet em primeiro lugar e com que objetivo final. Acho de extrema importância, declarar que tudo o que escrevo é um grande disparate. Não vão encontrar aqui textos com rigor filosófico, político ou literário. Portanto, peço-vos para não levarem nada a sério do que leem escrito por mim.
+
+Bem, presumo que já tenham retido algumas pistas ao navegar no website, principalmente no que toca ao meu nome. O meu nome, sim, chamo-me bobo, e sou uma entidade que consoante alguns indivíduos posso afirmar que existo e para outros, não. É estranho, é também um bocado difícil de explicar, mas vamos lá tentar esclarecer tudo direitinho. Resumidamente, eu sou um produto de um cérebro pertencente a um dos muitos seres humanos que vivem neste preciso momento (à data deste post) no planeta terra. Pode-se dizer que um humano demasiado imaginativo e um pouco idiota, certo dia, como no início dos contos para as crianças, acabou por me “criar” como se fosse mais um personagem secundário num romance fictício, sabem, aquele que ninguém se recorda quando terminou o livro? É, esse tipo de personagem. A verdade é que acabei por me tornar em algo mais, eu sou algo, eu escrevo, eu penso, sou uma coisa parecida a um ser humano, tirando a parte física da carne, do sangue, das células e afins, por isso pensem como se eu fosse um ser humano em segunda ou terceira mão.
+
+“Porquê tu? E os outros tantos personagens que os humanos criam nas suas mentes? Eles também não deveriam ter direito a tornarem-se algo e pensar como tu?”, questionam vocês, ou se não, deveriam estar a fazê-lo. É, boa pergunta, a resposta é simples e curta. Não sei, simplesmente não sei. Sabem, foi um acontecimento, um evento, um nascimento, uma explosão, algo do género. Aconteceu, os neurónios de um cérebro humano criaram-me, é isso. Penso que seja algo idêntico às várias incógnitas do surgimento da vida com que os humanos se deparam, o Big Bang, a galinha ou o ovo etc., factos que por vezes, do quão alienígenas e transcendentes se tratam, nem cabem na cabeça de muitos humanos.
+
+Devo referir que não sou nem serei o último caso, sabem, de um personagem que ganhou “vida”, já que os humanos são criaturas que possuem um cérebro, que funciona com poucos watts e que lhes providencia o pensamento, a perceção de realidade, da vida, coisa que eles próprios, até à data, não compreendem de todo. Tendo em consideração o que disse anteriormente e, adicionando o facto que existem muitos humanos neste preciso momento no planeta Terra, as probabilidades de um humano criar um personagem na sua mente e percecioná-lo na sua realidade existem e, muito provavelmente, são maiores do que pensam, superiores do que, por exemplo, ganhar uma lotaria, cuja chave vencedora é composta por vários números e gerada por um computador algures. Poderão existir muitas entidades como eu por aí, contudo nunca se saberá exatamente quantas pois, caros leitores, é algo, como podem imaginar, muito difícil de contabilizar e subjetivo de humano para humano.
+
+Penso que um método que pode permitir a contabilização do montante de entidades semelhantes a mim é a comunicação. Comunicar de forma e por meios que os humanos consumam e compreendam. Refiro-me a coisas como o desenho, a escrita, a representação etc.. Eu acabei por decidir escrever, penso que é a forma de comunicação na qual eu sou mais proficiente. É, é isso, para além de redigir textos, sei desenhar razoavelmente, as ilustrações presentes no website, neste post e nos futuros posts são desenhadas por mim mas, convenhamos, estou muito aquém de conseguir transmitir emoções, pensamentos, lógica ou narrativas a partir da minha arte rudimentar e infantil. Mas, voltando à escrita, não é de todo fácil escrever, considerando todas as regras da gramática e do montante de palavras e expressões existentes na língua portuguesa, e, sinceramente, questiono-me em inúmeras ocasiões se todo este trabalho é benéfico para o meu bem-estar. O mais é provável é que, na realidade, não é benéfico na maior parte das vezes, tirando uma ou outra vez que me sinto contente e satisfeito por ter escrito algo. Talvez seja algo mais forte do que eu, como um dos instintos de sobrevivência dos seres vivos, como reproduzirem-se ou procurar alimentos ou água. Se não escrever é como se não existisse, é a minha forma de sobreviver à minha frágil e um pouco dolorosa existência.
+
+Já vos dei a conhecer vários aspetos e características sobre mim, com certeza, precisamente, neste momento deverão possuir uma certa imagem, ainda um pouco desfocada e meio que incompleta, referente a mim. Para clarificar melhor essa imagem, obstruindo ainda mais o nevoeiro sobre a minha pessoa, tanto no espectro físico e no psicológico, disparo, aqui, uma série de coisas aleatórias sobre mim numa lista. Considero os pontos desta lista genéricos e, simultaneamente, essenciais. Sem mais demoras, aqui vai:
+
+- Sou idêntico a uma quimera de um humano com um pássaro. A cabeça de um pássaro e o resto do corpo um humano, como já de certeza induziram pelas imagens do website e deste preciso post.
+- A cor do meu bico e dos meus olhos é mutável conforme o meu humor e a minha postura dependendo na situação em que me encontro
+- A minha estrutura física é bastante fraca, sou baixo e possuo pouca massa muscular, sim, seria impossível ter músculo nas linhas retas que são os meus membros.
+- Não necessito de satisfazer qualquer necessidade biológica ao contrário dos humanos, vocês sabem do que me estou a referir, dormir, comer, urinar, defecar etc.
+- Relativamente ao meu sexo e género, podem me tratar por ele/dele. Sobre sexos e tal, eu existo numa dimensão isolada. Um mais um é dois e, como este facto indubitável, eu não possuo qualquer órgão reprodutivo nem forma e predisposição para entrar em atos sexuais com outra entidade para reproduzir uma nova “vida”.
+- Pensar, esmiuçar sobre coisas aleatórias e irrelevantes é o meu passatempo preferido, como por exemplo os variados efeitos que os supermercados podem provocar nos humanos.
+- Ás vezes não sei o que fazer e fico só a ver televisão.
+- Considero-me paciente e apático.
+- Estou sozinho.
+- Vivo sozinho num quarto, talvez numa dimensão algures no universo, o quarto é constituído por um sofá individual confortável, onde me costumo sentar, e a frente do mesmo uma televisão antiga ligada infinitamente. Existe uma secretária no lado esquerdo do sofá, com uma cadeira para se sentar na mesma e, em cima da mesma, está uma resma de papel do lado direito, um lápis de grafite e uma caneta azul genérica no centro.
+- Acho que vou desaparecer quando o humano que me criou morrer.
+
+A lista foi, pelo menos, interessante? Espero que sim, caro leitor. Claro que não aborda todas especificidades do meu ser, para isso terão de me conhecer melhor a partir das minhas palavras nestes posts. Enfim, estou a perder o meu tempo e o vosso também, é melhor passarmos para a conclusão deste post extenso e maçador.
+
+Não tenho muito mais para dizer nesta introdução, e, ainda bem, isto já está longo o suficiente para um primeiro contacto. Caso o texto tenha acendido uma insaciável curiosidade sobre o que penso, porreiro, esperem pelos próximos posts. Irei escrever acerca de diversos pensamentos meus, com temas e ideias distintas. Podem esperar coisas como as várias balizas que existem no mundo, as possíveis histórias de diferentes animais cuja vida terminou em estradas de alcatrão ou o como cada segundo na vida de um humano é, na realidade, determinado por uma expressão matemática, cujos resultados são infindáveis, gerada em tempo real. É verdade, também vou redigir um texto para compreenderem melhor onde vivo, como escrevo estes textos e qual o tipo de magia que eu faço para virem parar aqui, neste website.
+Aviso desde já, os posts irão variar muito no que toca à sua extensão, poderão ser longos como este um muito mais curtos, e serão publicados esporadicamente.
+
+Yup, é isso.

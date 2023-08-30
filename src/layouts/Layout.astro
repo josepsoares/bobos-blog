@@ -46,19 +46,6 @@ const { title, banner, bannerH = "h-72" } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="msapplication-TileColor" content="#1d976c" />
     <meta name="theme-color" content="#1d976c" />
-
-    <script
-      type="text/partytown"
-      src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
-    ></script>
-    <script type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "GA_MEASUREMENT_ID");
-    </script>
   </head>
   <body
     class="my-8 w-[100vw] overflow-x-hidden bg-stone-900 font-body text-white"

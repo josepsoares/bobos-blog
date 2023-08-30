@@ -59,7 +59,10 @@ const previousPost =
       > para ser lido
     </h4>
 
-    <div id="post-content" class="my-6 space-y-2 text-lg text-stone-200">
+    <div
+      id="post-content"
+      class="prose dark:prose-invert my-6 max-w-full space-y-2 text-lg text-stone-200"
+    >
       <Content />
     </div>
 
@@ -68,17 +71,14 @@ const previousPost =
     >
       <div>
         <h4 class="text-gradient mb-1 text-4xl">é verdade...</h4>
-        <h5 class="text-xl">
+        <h5 class="text-base">
           se quiseres partilhar este post pelo mundo fora,
         </h5>
-        <h5 class="text-xl">podes fazê-lo a partir das botões abaixo</h5>
+        <h5 class="text-base">
+          carrega no botão abaixo que copia o link desta página, voilá.
+        </h5>
 
-        <SharePostSection
-          client:only
-          url={url.href}
-          title={entry.data.title}
-          subjects={entry.data.subjects.join(", ")}
-        />
+        <SharePostSection client:only url={url.href} />
       </div>
       <img
         class="h-48 w-full object-cover md:mx-auto md:w-auto"
@@ -93,7 +93,7 @@ const previousPost =
         href="/"
       >
         <Icon class="mr-1 h-2.5 w-2.5" name="house" />
-        voltar à página inicial
+         voltar à página inicial
       </a>
     </div>
 
@@ -108,14 +108,16 @@ const previousPost =
               href={nextPost.slug}
             >
               <Icon
-                class="group-hover:text-primary-600 group-active:text-primary-600 h-7 w-7 transition-all duration-500 ease-in-out"
+                class="h-7 w-7 transition-all duration-500 ease-in-out group-hover:text-primary-600 group-active:text-primary-600"
                 name="arrow-left"
               />
               <div>
-                <p class="text-md decoration-secondary group-hover:text-primary-600 group-active:text-primary-600 underline decoration-2 transition-all duration-500 ease-in-out md:text-lg">
+                <p class="text-md underline decoration-secondary decoration-2 transition-all duration-500 ease-in-out group-hover:text-primary-600 group-active:text-primary-600 md:text-lg">
                   próximo post
                 </p>
-                <h5 class="text-sm text-stone-500">{nextPost.data.title}</h5>
+                <h5 class="line-clamp-1 text-sm text-stone-500">
+                  {nextPost.data.title}
+                </h5>
               </div>
             </a>
           )
@@ -129,15 +131,15 @@ const previousPost =
               href={previousPost.slug}
             >
               <div>
-                <p class="text-md decoration-secondary group-hover:text-primary-600 group-active:text-primary-600 underline decoration-2 transition-all duration-500 ease-in-out md:text-lg">
+                <p class="text-md underline decoration-secondary decoration-2 transition-all duration-500 ease-in-out group-hover:text-primary-600 group-active:text-primary-600 md:text-lg">
                   post anterior
                 </p>
-                <h5 class="text-sm text-stone-500">
+                <h5 class="line-clamp-1 text-sm text-stone-500">
                   {previousPost.data.title}
                 </h5>
               </div>
               <Icon
-                class="group-hover:text-primary-600 group-active:text-primary-600 h-7 w-7 transition-all duration-500 ease-in-out"
+                class="h-7 w-7 transition-all duration-500 ease-in-out group-hover:text-primary-600 group-active:text-primary-600"
                 name="arrow-right"
               />
             </a>
